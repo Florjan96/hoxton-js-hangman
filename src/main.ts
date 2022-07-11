@@ -43,6 +43,16 @@ window.state=state
 window.getmistakes=getmistakes
 
 
+function getRightGuesses(){
+  let mistakes=state.characters.filter(character=>state.word.includes(character))
+  return mistakes
+}
+
+function getRightGuessesCount(){
+ let rightG=getRightGuesses()
+return rightG.length
+}
+
 
 function render (){
   let app=document.querySelector('#app')
@@ -51,7 +61,11 @@ function render (){
 
   let displayMistakes=document.createElement('h5')
   displayMistakes.textContent=`Mistakes: ${getmistakes()}(${mistakesCount()})  ` 
-  app.append(displayMistakes)
+  
+  let rightGuesses=document.createElement('h5')
+  rightGuesses.textContent=`Guesses: ${getRightGuesses()}(${getRightGuessesCount()})  ` 
+
+  app.append(displayMistakes,rightGuesses)
 }
 render()
 
