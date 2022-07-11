@@ -41,3 +41,37 @@ mistakesCount()
   window.mistakesCount=mistakesCount
 window.state=state
 window.getmistakes=getmistakes
+
+
+
+function render (){
+  let app=document.querySelector('#app')
+  if(app===null)return
+  app.textContent=''
+
+  let displayMistakes=document.createElement('h5')
+  displayMistakes.textContent=`Mistakes: ${getmistakes()}(${mistakesCount()})  ` 
+  app.append(displayMistakes)
+}
+render()
+
+
+function userKeypress(){
+  // event is to know what the user types
+document.addEventListener('keyup',function(event){
+ 
+
+// if its already there stop
+ if (state.characters.includes(event.key)) return
+ 
+  state.characters.push(event.key )
+
+
+
+render()
+})
+}
+
+
+userKeypress()
+render()
