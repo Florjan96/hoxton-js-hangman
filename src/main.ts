@@ -8,7 +8,7 @@ import './style.css'
 // Be told when they guessed the word
 // Be told when they lose the game
 
-// ???: How do we get a random
+
 
 let state = {
   word: 'program',
@@ -53,6 +53,17 @@ function getRightGuessesCount(){
 return rightG.length
 }
 
+function checIfUserWon(){
+  for(let letter of state.word){
+    // nqs nje shkronje nuk eshte te guesses stop dhe kthe return false
+    if(!state.characters.includes(letter))return false
+  }
+  // return duhet tvendoset ketu 
+ return true
+}
+
+
+
 
 function render (){
   let app=document.querySelector('#app')
@@ -75,7 +86,7 @@ function userKeypress(){
 document.addEventListener('keyup',function(event){
  
 
-// if its already there stop
+// if the user typed one time  stop
  if (state.characters.includes(event.key)) return
  
   state.characters.push(event.key )
